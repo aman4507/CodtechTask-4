@@ -1,0 +1,27 @@
+abstract class LibraryItem {
+    private String title;
+    private String author;
+    private String category;
+    private boolean isCheckedOut;
+    private int id;
+    
+    // Constructors, getters, and setters
+}
+
+class Book extends LibraryItem {
+    private String isbn;
+    
+    // Constructors, getters, and setters
+}
+
+class Magazine extends LibraryItem {
+    private int issueNumber;
+    
+    // Constructors, getters, and setters
+}
+
+class DVD extends LibraryItem {
+    private String director;
+    
+    // Constructors, getters, and setters
+}
