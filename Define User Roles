@@ -1,0 +1,14 @@
+abstract class User {
+    private String name;
+    private String userId;
+    
+    // Constructors, getters, and setters
+}
+
+class Librarian extends User {
+    // Additional methods for managing library items
+}
+
+class Patron extends User {
+    // Additional methods for checking out and returning items
+}
