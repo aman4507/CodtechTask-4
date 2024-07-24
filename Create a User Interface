@@ -1,0 +1,79 @@
+import java.util.Scanner;
+
+public class LibraryManagementSystem {
+    public static void main(String[] args) {
+        Library library = new Library();
+        Scanner scanner = new Scanner(System.in);
+        
+        // Load existing library data
+        library.loadLibraryData();
+        
+        while (true) {
+            System.out.println("Library Management System");
+            System.out.println("1. Add Item");
+            System.out.println("2. Search Item");
+            System.out.println("3. Check Out Item");
+            System.out.println("4. Return Item");
+            System.out.println("5. Exit");
+            int choice = scanner.nextInt();
+            scanner.nextLine();  // Consume newline
+            
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter item type (book, magazine, dvd):");
+                    String itemType = scanner.nextLine();
+                    System.out.println("Enter title:");
+                    String title = scanner.nextLine();
+                    System.out.println("Enter author:");
+                    String author = scanner.nextLine();
+                    System.out.println("Enter category:");
+                    String category = scanner.nextLine();
+                    
+                    LibraryItem item;
+                    if (itemType.equalsIgnoreCase("book")) {
+                        System.out.println("Enter ISBN:");
+                        String isbn = scanner.nextLine();
+                        item = new Book(title, author, category, isbn);
+                    } else if (itemType.equalsIgnoreCase("magazine")) {
+                        System.out.println("Enter issue number:");
+                        int issueNumber = scanner.nextInt();
+                        item = new Magazine(title, author, category, issueNumber);
+                    } else {
+                        System.out.println("Enter director:");
+                        String director = scanner.nextLine();
+                        item = new DVD(title, author, category, director);
+                    }
+                    library.addItem(item);
+                    break;
+                    
+                case 2:
+                    System.out.println("Enter title to search:");
+                    String searchTitle = scanner.nextLine();
+                    LibraryItem foundItem = library.searchByTitle(searchTitle);
+                    if (foundItem != null) {
+                        System.out.println("Item found: " + foundItem.getTitle());
+                    } else {
+                        System.out.println("Item not found.");
+                    }
+                    break;
+                    
+                case 3:
+                    // Similar process for checking out items
+                    break;
+                    
+                case 4:
+                    // Similar process for returning items
+                    break;
+                    
+                case 5:
+                    library.saveLibraryData();
+                    System.out.println("Library data saved. Exiting...");
+                    scanner.close();
+                    return;
+                    
+                default:
+                    System.out.println("Invalid choice. Try again.");
+            }
+        }
+    }
+}
