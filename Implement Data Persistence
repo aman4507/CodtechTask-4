@@ -1,0 +1,19 @@
+import java.io.*;
+
+public void saveLibraryData() {
+    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("library_data.dat"))) {
+        out.writeObject(items);
+        out.writeObject(users);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+public void loadLibraryData() {
+    try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("library_data.dat"))) {
+        items = (List<LibraryItem>) in.readObject();
+        users = (List<User>) in.readObject();
+    } catch (IOException | ClassNotFoundException e) {
+        e.printStackTrace();
+    }
+}
