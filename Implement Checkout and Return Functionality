@@ -1,0 +1,17 @@
+public boolean checkOutItem(LibraryItem item, Patron patron) {
+    if (!item.isCheckedOut()) {
+        item.setCheckedOut(true);
+        // Record the checkout information (e.g., due date)
+        return true;
+    }
+    return false;
+}
+
+public boolean returnItem(LibraryItem item) {
+    if (item.isCheckedOut()) {
+        item.setCheckedOut(false);
+        // Calculate any overdue fines
+        return true;
+    }
+    return false;
+}
